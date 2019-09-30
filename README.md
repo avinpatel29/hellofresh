@@ -1,5 +1,17 @@
 # HelloFresh
-Integrated automation framework(API & Web based) for the tasks provided.
+Integrated automation framework(API & Web based) for the tasks provided. The framework consists of below higlighted features and can be improved further:
+
+- [x] Logging
+- [ ] Taking screenshot on failed tests;
+- [x] Generation human readable report using ExtentReports;
+- [ ] generating random values for insignificant test data, for example, for new user;
+- [x] WebDriver factory;
+- [x] Encapsulation layers like test data, logic of tests, actions on web pages and so on;
+- [x] Configurator:
+- [ ] run tests in parallel mode;
+- [x] Ability to run tests for different browsers/OS by configuring;
+- [x] Ability to run tests for different environments by configuring/by command-line.
+- [x] Reading test data from excel sheet (in this framework).
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
