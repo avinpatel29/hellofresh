@@ -1,12 +1,8 @@
 package com.hellofresh;
 
+import com.hellofresh.api.TestBaseAPI;
 import org.apache.log4j.Logger;
-import org.testng.ITestNGListener;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import java.lang.reflect.Method;
+import org.testng.annotations.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
@@ -14,31 +10,18 @@ import static org.hamcrest.Matchers.*;
  * @author Avinash Patel
  *
  */
-public class API_Tests implements ITestNGListener {
+public class API_Tests extends TestBaseAPI{
 
 	static Logger log = Logger.getLogger(API_Tests.class);
-	String BASE_URL= "http://services.groupkt.com/country/";
-	
-	@BeforeMethod
-	public void beforeTest(Method method){
-		log.info("------------------------------------------------");
-		log.info("Starting executing :" +method.getName());
-	}
+	String BASE_URL= "http://services.groupkt.com/country";
 
-	@AfterMethod
-	public void afterTest(ITestResult result){
-		log.info("Finished executing testcase :" +result.getMethod().getMethodName());
-		log.info("------------------------------------------------");
-	}
 
 	@Test(priority=1, description="Test case to verify few countries(US,DE & GB) are validated  ")
 	public void testcase_1() throws Exception {
-		
 		given()
 		.when().get(BASE_URL+"/get/all")
 		.then().statusCode(200).body("alpha2Code", hasItems("US","DE","GB"));	
 	}
-
 
 	@Test(priority=2, description="To validate responses of individual countries")
 	public void testcase_2() throws Exception {
@@ -58,7 +41,6 @@ public class API_Tests implements ITestNGListener {
 		.body("RestResponse.result.alpha2_code", equalTo("GB"))
 		.body("RestResponse.result.alpha3_code", equalTo("GBR"));
 	}
-	
 
 	@Test(priority=3, description="Test case to check for inexistent country code & validate the response")
 	public void testcase_3() throws Exception {
@@ -66,9 +48,11 @@ public class API_Tests implements ITestNGListener {
 		.body("RestResponse.messages", equalTo("No matching country found for requested code [HF]."));
 	}
 	
-	@Test(priority=4, description="Adding & validating a new country to the list")
+	@Test(priority=4, description="Test case to check for inexistent country code & validate the response")
 	public void testcase_4() throws Exception {
 		given().when().body("{name: \"Test Country\", alpha2_code: \"TC\", alpha3_code: \"TCY\"}")
 		.post(BASE_URL+"/post/HF").then().statusCode(201);
 	}
+
+
 }

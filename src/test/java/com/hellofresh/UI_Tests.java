@@ -5,16 +5,15 @@ import static org.testng.Assert.assertTrue;
 import java.util.Date;
 import org.apache.commons.configuration.ConfigurationException;
 import org.testng.Assert;
-import org.testng.ITestNGListener;
 import org.testng.annotations.Test;
 import com.hellofresh.ui.TestBaseUI;
 
-public class UI_Tests extends TestBaseUI implements ITestNGListener {
+public class UI_Tests extends TestBaseUI  {
 	String timestamp = String.valueOf(new Date().getTime());
     String emailId = "hf_challenge_" + timestamp + "@hf" + timestamp.substring(7) + ".com";
 
     @Test(priority = 1, description="Sign up a new customer")
-    public void signInTest() throws ConfigurationException {
+    public void signinTest() throws ConfigurationException {
         container.myStorePage.clickSignInLink();
         container.loginPage.createAnAccount(emailId);
         container.signUpPage.selectTitle(data.get("title"));
@@ -32,7 +31,7 @@ public class UI_Tests extends TestBaseUI implements ITestNGListener {
         container.signUpPage.enterMobilePhone(data.get("mobilePhone"));
         container.signUpPage.enterAlias(data.get("alias"));
         container.signUpPage.clickRegisterButton();
-        
+
         Assert.assertEquals(container.myAccountPage.myAccountText(), "MY ACCOUNT");
         Assert.assertTrue(container.myAccountPage.myAccountInfo().contains("Welcome to your account."));
         Assert.assertTrue(container.myAccountPage.isSignoutLinkDisplayed());
@@ -40,7 +39,7 @@ public class UI_Tests extends TestBaseUI implements ITestNGListener {
     }
 
     @Test(priority = 2, description="Testcase to login with existing created customer credentials")
-    public void logInTest() throws ConfigurationException {
+    public void loginTest() throws ConfigurationException {
     	container.myStorePage.clickSignInLink();
     	container.loginPage.login(data.get("email"), data.get("password"));
     	
