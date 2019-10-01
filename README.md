@@ -55,7 +55,7 @@ src/main/resources  - Consists of test data which is required for the tests to r
 
 ## Built With
 * Dependency Management - [Maven](https://maven.apache.org/)  
-* Web framework used    - Selenium WebDriver+PageObject Model
+* Web framework used    - Selenium WebDriver + PageFactory Model
 * API Framework used    - [RestAssured](http://rest-assured.io/)
 * Testing tool          - [TestNG](https://testng.org/doc/)
 * Extent Reporting      - [Extent Reports](https://extentreports.com/)
