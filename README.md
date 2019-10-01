@@ -30,11 +30,13 @@ Eclipse/IntelliJ
 3. Once the project is imported successfully, you can trigger the API or UI tests by opening the terminal in the IDE and providing below command:
 ```
 For UI:
-    mvn clean install -Dcomponent=UI -Denv=dev -Dbrowser=chrome
+    mvn clean install -Dcomponent=<component_name> -Denv=<environment_name> -Dbrowser=<browser>
+    Eg: mvn clean install -Dcomponent=UI -Denv=dev -Dbrowser=chrome
 ```
 ```
 For API:
-    mvn clean install -Dcomponent=API -Denv=dev
+    mvn clean install -Dcomponent=<component_name> -Denv=<environment_name>
+    Eg: mvn clean install -Dcomponent=API -Denv=dev
 ```
 
 <b>Note:</b> Drivers are also included in the project. Chrome driver included in the project is 76.0.x. Please feel free to replace with the version of driver where you want to run the tests.</font>
