@@ -50,6 +50,7 @@ src/main/java       - Consists of Page classes & methods
 src/main/resources  - Consists of resources utilised by across (such as log4j.properties, setup.properties etc.)   
 src/main/test       - Consists of tests to be executed
 src/main/resources  - Consists of test data which is required for the tests to run
+/TestReport         - Consists of reports & logs files for both UI & API tests
 ```
 
 ## Built With
