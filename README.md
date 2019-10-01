@@ -59,3 +59,4 @@ src/main/resources  - Consists of test data which is required for the tests to r
 * API Framework used    - [RestAssured](http://rest-assured.io/)
 * Testing tool          - [TestNG](https://testng.org/doc/)
 * Extent Reporting      - [Extent Reports](https://extentreports.com/)
+* Logging               - [Log4J](https://logging.apache.org/log4j/2.x/)
