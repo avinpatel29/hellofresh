@@ -44,16 +44,23 @@ public class TestBaseUI {
     public ExtentHtmlReporter htmlReporter;
     public ExtentReports extent;
     public ExtentTest test;
+    public String env = "dev";
+    public String browser = "chrome";
 
     @BeforeClass
     public void beforeClass() throws IOException, ConfigurationException {
     	 sheetName=this.getClass().getSimpleName();
         setLogger();
+        env = System.getProperty("env");
+        browser = System.getProperty("browser");
+
+        GetConfig.updateProperties("Env", env);
+        GetConfig.updateProperties("browser", browser);
     }
 
 
     @BeforeTest
-    public void startReport() throws ConfigurationException {
+    public void startReport() throws ConfigurationException, IOException {
 
         htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") +"/TestReport/HF_UI_Automation.html");
         extent = new ExtentReports();

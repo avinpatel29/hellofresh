@@ -32,11 +32,16 @@ public class TestBaseAPI {
     public ExtentHtmlReporter htmlReporter;
     public ExtentReports extent;
     public ExtentTest test;
+    public String env = "dev";
 
     @BeforeClass
     public void beforeClass() throws IOException, ConfigurationException {
         sheetName=this.getClass().getSimpleName();
         setLogger();
+
+        env = System.getProperty("env");
+        GetConfig.updateProperties("Env", env);
+
     }
 
     @BeforeTest
@@ -61,7 +66,7 @@ public class TestBaseAPI {
     @BeforeMethod
     public void beforeTest(Method method){
         Test test1= method.getAnnotation(Test.class);
-        log.info("------------------------------------------------");
+        log.info("----------------------------------");
         log.info("Starting executing :" +method.getName());
         test = extent.createTest(method.getName(), test1.description());
     }
@@ -71,7 +76,7 @@ public class TestBaseAPI {
     @AfterMethod
     public void getResult(ITestResult result) {
         log.info("Finished executing testcase :" +result.getMethod().getMethodName());
-        log.info("------------------------------------------------");
+        log.info("----------------------------------");
         if(result.getStatus() == ITestResult.FAILURE) {
             test.log(Status.FAIL, MarkupHelper.createLabel(result.getName()+" FAILED ", ExtentColor.RED));
             test.fail(result.getThrowable());

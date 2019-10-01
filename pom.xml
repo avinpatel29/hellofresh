@@ -156,13 +156,30 @@
   </dependencies>
   <build>
     <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.19</version>
+            <configuration>
+                <argLine>-Xmx2G</argLine>
+                <failIfNoTests>false</failIfNoTests>
+                <parallel>classesAndMethods</parallel>
+                <useUnlimitedThreads>true</useUnlimitedThreads>
+                <reportFormat>plain</reportFormat>
+                <systemPropertyVariables>
+                    <environment>${env}</environment>
+                    <version>${browser}</version>
+                    <component>${component}</component>
+                </systemPropertyVariables>
+            </configuration>
+        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.18.1</version>
         <configuration>
           <includes>
-            <include>${component}_Tests.java</include>
+            <include>com/hellofresh/${component}_Tests.java</include>
           </includes>
         </configuration>
       </plugin>
